@@ -1,0 +1,200 @@
+<html>
+   <head>
+      <script type="text/javaScript" src="prototype.js"></script>
+		<script type="text/javaScript" src="lib/morpion.js"></script>
+		<script type="text/javaScript" src="lib/morpion_vis.js"></script>
+		<script type="text/javaScript" src="js_render_data/js_data.js"></script>
+   </head>
+   <body>
+
+
+
+
+
+
+		<canvas id="can" width="1500" height="1500"></canvas>
+      <script>
+		  
+		
+		
+		
+//		console.log(morp_data);
+		
+		
+		var canvas = document.getElementById('can');
+		
+		var morpionVis = new MorpionVis(canvas);
+		
+		
+		
+		var data_index = 0
+		
+		function draw(){
+		  morpionVis.clear();
+		  
+		  
+		  
+		  
+		  var dataInput = morp_data[data_index];
+		  
+		  if  (dataInput){
+			 dataInput.split('|').each(function(moveString,index){
+				 var moveParts = moveString.split(',');
+				 var x1 = parseInt(moveParts[0]);
+				 var y1 = parseInt(moveParts[1]);
+				 var x2 = parseInt(moveParts[2]);
+				 var y2 = parseInt(moveParts[3]);
+				 var dir = moveParts[4];
+
+				 morpionVis.drawMove(x1, y1, x2, y2, dir, index+1);
+			  });
+		  }
+		}
+		
+		draw();
+		
+		$(document).observe('keydown', function(event){
+		  
+		  if (event.keyCode == 39){
+			 data_index = Math.min(morp_data.length, data_index + 1);
+			 event.stop();
+		  }
+		  else if (event.keyCode == 37){
+			 data_index = Math.max(0, data_index - 1);
+			 event.stop();
+		  }
+		  
+		  draw();
+		  
+		  
+		})
+		
+		
+//		new PeriodicalExecuter(function(pe){
+		  
+//		 if (data_index > morp_data.length){
+//			  pe.stop();
+//		  }
+//		 
+//		  
+//		  
+//			
+//			data_index += 1;
+			
+			
+			
+			
+
+//		}, 0.1);
+
+		
+		
+		
+//
+//		var morpionVis = new MorpionVis(canvas);
+//
+//		function visualizeInput(){
+//			var canvas = document.getElementById('can');
+//
+//			var morpionVis = new MorpionVis(canvas);
+//
+//			var dataInput = $('dataInput');
+//
+//			var morpion = new Morpion();
+//
+//
+////			morpion.decode_moves(dataInput.value);
+//		  
+//			morpionVis.clear()
+//			
+//			
+//			dataInput.value.split('|').each(function(moveString,index){
+//			  var moveParts = moveString.split(',');
+//			  var x1 = parseInt(moveParts[0]);
+//			  var y1 = parseInt(moveParts[1]);
+//			  var x2 = parseInt(moveParts[2]);
+//			  var y2 = parseInt(moveParts[3]);
+//			  var dir = moveParts[4];
+//			  
+//			  morpionVis.drawMove(x1, y1, x2, y2, dir, index+1);
+//			});
+//			morpion.taken_moves.each(function(move,index){
+//				morpionVis.drawMove(move.x, move.y, move.line.x, move.line.y, move.line.dir, index+1);
+//			});
+			
+
+//			var index = 0;
+//			var move = morpion.taken_moves.first();
+//			morpionVis.drawMove(move.x, move.y, move.line.x, move.line.y, move.line.dir, index+1);
+//
+//
+//			var eval_morpion = new Morpion();
+//
+//			eval_morpion.possible_moves.each(function(poss_move){
+//
+//				morpionVis.drawPossibleMove(poss_move.x, poss_move.y, poss_move.line.x, poss_move.line.y, poss_move.line.dir);
+//			});
+//
+//
+//			
+//			
+//		}
+
+
+//	var canvas = document.getElementById('can');
+//
+//	var morpionVis = new MorpionVis(canvas);
+//
+//
+//
+//	var morpion = new Morpion();
+//
+//
+//	morpion.decode_moves('AAIAAAEAAAAEAAAAQCAAAAAABAAAgAAIQAACAAAIAIBAJAAQEEBAIEAIBAEACAAACAABAAIAEAEAAgBABEAAQAAQAgEIACAgACAEAQAIggCAICAAECAAIQAQEBAgCCAgQBQQECEQgQIQAEECBEQEQQiEQhEERIiRESi2LVKQEiIgg');
+//
+//
+//	console.log(morpion.score())
+
+//	morpion.random_completion();
+//
+//	new PeriodicalExecuter(function(pe){
+//
+//		var dna = morpion.generate_dna();
+//
+//		var eval_dna = dna.slice(0);
+//
+//		(3).times(function(){
+//			var index1 = morpion.random_taken_move_line_index()
+//			var index2 = Math.floor(Math.random()*6400)
+//
+////			console.log(index1,index2)
+//
+//			var t = eval_dna[index1]
+//			eval_dna[index1] = eval_dna[index2]
+//			eval_dna[index2] = t
+//		})
+//
+//		var eval_morpion = new Morpion()
+//
+//		eval_morpion.eval_dna(eval_dna)
+//
+//		if (eval_morpion.score() >= morpion.score()){
+//			morpion = eval_morpion
+//
+//			morpionVis.clear()
+//			eval_morpion.taken_moves.each(function(move,index){
+//				morpionVis.drawMove(move.x, move.y, move.line.x, move.line.y, move.line.dir, index+1);
+//			});
+//		}
+//
+//
+//
+//	}, 0.0001);
+
+
+
+//console.log(morpion.possible_moves.first().line.points())
+      
+      </script>
+   </body>
+</html>
